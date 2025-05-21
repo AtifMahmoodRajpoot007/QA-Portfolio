@@ -163,10 +163,3 @@ test_cases = [
         "Status": "Not Executed"
     }
 ]
-
-# Convert to DataFrame and export to Excel
-df = pd.DataFrame(test_cases)
-file_path = "CovertlyAI_Login_Test_Cases_Extended.xlsx"
-df.to_excel(file_path, index=False)
-
-print(f"Test cases exported successfully to {file_path}")
