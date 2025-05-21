@@ -1,8 +1,8 @@
 import pandas as pd
 
-# Define test cases for each login method
+# Define extended test cases including positive and negative scenarios
 test_cases = [
-    # Social Login: Google
+    # Positive Social Login: Google
     {
         "Test Case ID": "TC_Login_001",
         "Scenario": "Sign in with Google",
@@ -12,9 +12,19 @@ test_cases = [
         "Priority": "High",
         "Status": "Not Executed"
     },
-    # Social Login: Apple
+    # Negative Social Login: Google - Deny permissions
     {
         "Test Case ID": "TC_Login_002",
+        "Scenario": "Sign in with Google - deny permissions",
+        "Steps": "Click 'Sign in with Google' button\nDeny permissions\nRemain on login page",
+        "Expected Result": "User is not logged in; error message displayed",
+        "Test Data": "Google account with denied permissions",
+        "Priority": "Medium",
+        "Status": "Not Executed"
+    },
+    # Positive Social Login: Apple
+    {
+        "Test Case ID": "TC_Login_003",
         "Scenario": "Sign in with Apple",
         "Steps": "Click 'Sign in with Apple' button\nAuthenticate with Apple ID\nRedirect to app",
         "Expected Result": "User is successfully logged in and redirected to dashboard",
@@ -22,9 +32,19 @@ test_cases = [
         "Priority": "High",
         "Status": "Not Executed"
     },
-    # Social Login: Facebook
+    # Negative Social Login: Apple - Authentication fails
     {
-        "Test Case ID": "TC_Login_003",
+        "Test Case ID": "TC_Login_004",
+        "Scenario": "Sign in with Apple - authentication failure",
+        "Steps": "Click 'Sign in with Apple' button\nEnter wrong Apple ID password\nAuthentication fails",
+        "Expected Result": "User is not logged in; error message displayed",
+        "Test Data": "Invalid Apple ID credentials",
+        "Priority": "Medium",
+        "Status": "Not Executed"
+    },
+    # Positive Social Login: Facebook
+    {
+        "Test Case ID": "TC_Login_005",
         "Scenario": "Sign in with Facebook",
         "Steps": "Click 'Sign in with Facebook' button\nAuthenticate with Facebook\nRedirect to app",
         "Expected Result": "User is successfully logged in and redirected to dashboard",
@@ -32,9 +52,19 @@ test_cases = [
         "Priority": "High",
         "Status": "Not Executed"
     },
-    # Email Login: Valid credentials
+    # Negative Social Login: Facebook - Cancel login
     {
-        "Test Case ID": "TC_Login_004",
+        "Test Case ID": "TC_Login_006",
+        "Scenario": "Sign in with Facebook - cancel login",
+        "Steps": "Click 'Sign in with Facebook' button\nCancel login or permissions\nRemain on login page",
+        "Expected Result": "User is not logged in; error message displayed",
+        "Test Data": "Facebook account with canceled login",
+        "Priority": "Medium",
+        "Status": "Not Executed"
+    },
+    # Positive Email Login: Valid credentials
+    {
+        "Test Case ID": "TC_Login_007",
         "Scenario": "Login with valid email and password",
         "Steps": "Enter email and password\nClick Login",
         "Expected Result": "User is logged in and redirected to dashboard",
@@ -42,9 +72,9 @@ test_cases = [
         "Priority": "High",
         "Status": "Not Executed"
     },
-    # Email Login: Invalid password
+    # Negative Email Login: Incorrect password
     {
-        "Test Case ID": "TC_Login_005",
+        "Test Case ID": "TC_Login_008",
         "Scenario": "Login with incorrect password",
         "Steps": "Enter valid email and incorrect password\nClick Login",
         "Expected Result": "Error message displayed: 'Incorrect password'",
@@ -52,9 +82,9 @@ test_cases = [
         "Priority": "Medium",
         "Status": "Not Executed"
     },
-    # Email Login: Invalid email
+    # Negative Email Login: Invalid email format
     {
-        "Test Case ID": "TC_Login_006",
+        "Test Case ID": "TC_Login_009",
         "Scenario": "Login with invalid email format",
         "Steps": "Enter malformed email (e.g., 'user@')\nClick Login",
         "Expected Result": "Validation error displayed",
@@ -62,9 +92,29 @@ test_cases = [
         "Priority": "Low",
         "Status": "Not Executed"
     },
-    # Secret Key Login: Valid key
+    # Negative Email Login: Empty email
     {
-        "Test Case ID": "TC_Login_007",
+        "Test Case ID": "TC_Login_010",
+        "Scenario": "Login with empty email field",
+        "Steps": "Leave email empty\nEnter valid password\nClick Login",
+        "Expected Result": "Validation error displayed: 'Email is required'",
+        "Test Data": "Empty email",
+        "Priority": "Medium",
+        "Status": "Not Executed"
+    },
+    # Negative Email Login: Empty password
+    {
+        "Test Case ID": "TC_Login_011",
+        "Scenario": "Login with empty password field",
+        "Steps": "Enter valid email\nLeave password empty\nClick Login",
+        "Expected Result": "Validation error displayed: 'Password is required'",
+        "Test Data": "Empty password",
+        "Priority": "Medium",
+        "Status": "Not Executed"
+    },
+    # Positive Secret Key Login: Valid key
+    {
+        "Test Case ID": "TC_Login_012",
         "Scenario": "Login using valid secret key",
         "Steps": "Click 'Use Secret Key'\nPaste valid key\nClick Submit",
         "Expected Result": "User is logged in and redirected to dashboard",
@@ -72,9 +122,9 @@ test_cases = [
         "Priority": "High",
         "Status": "Not Executed"
     },
-    # Secret Key Login: Invalid key
+    # Negative Secret Key Login: Invalid/expired key
     {
-        "Test Case ID": "TC_Login_008",
+        "Test Case ID": "TC_Login_013",
         "Scenario": "Login using invalid secret key",
         "Steps": "Click 'Use Secret Key'\nPaste invalid/expired key\nClick Submit",
         "Expected Result": "Error message: 'Invalid or expired key'",
@@ -82,123 +132,41 @@ test_cases = [
         "Priority": "Medium",
         "Status": "Not Executed"
     },
-    # Secret Key Generation
+    # Negative Secret Key Login: Malformed key
     {
-        "Test Case ID": "TC_Login_009",
+        "Test Case ID": "TC_Login_014",
+        "Scenario": "Login using malformed secret key",
+        "Steps": "Click 'Use Secret Key'\nPaste malformed key\nClick Submit",
+        "Expected Result": "Validation error displayed: 'Malformed key format'",
+        "Test Data": "Malformed secret key",
+        "Priority": "Medium",
+        "Status": "Not Executed"
+    },
+    # Positive Secret Key Generation
+    {
+        "Test Case ID": "TC_Login_015",
         "Scenario": "Generate a new secret key",
         "Steps": "Click 'Create a new key'\nCopy generated key",
         "Expected Result": "Key is successfully generated and copied",
         "Test Data": "N/A",
         "Priority": "Medium",
         "Status": "Not Executed"
-    }
-]
-
-# Convert to DataFrame and export to Excel
-df = pd.DataFrame(test_cases)
-file_path = "/mnt/data/CovertlyAI_Login_Test_Cases.xlsx"
-df.to_excel(file_path, index=False)
-
-file_path
-import pandas as pd
-
-# Define test cases for each login method
-test_cases = [
-    # Social Login: Google
-    {
-        "Test Case ID": "TC_Login_001",
-        "Scenario": "Sign in with Google",
-        "Steps": "Click 'Sign in with Google' button\nAllow permissions\nRedirect back to app",
-        "Expected Result": "User is successfully logged in and redirected to dashboard",
-        "Test Data": "Valid Google account",
-        "Priority": "High",
-        "Status": "Not Executed"
     },
-    # Social Login: Apple
+    # Negative Secret Key Generation: Failure
     {
-        "Test Case ID": "TC_Login_002",
-        "Scenario": "Sign in with Apple",
-        "Steps": "Click 'Sign in with Apple' button\nAuthenticate with Apple ID\nRedirect to app",
-        "Expected Result": "User is successfully logged in and redirected to dashboard",
-        "Test Data": "Valid Apple ID",
-        "Priority": "High",
-        "Status": "Not Executed"
-    },
-    # Social Login: Facebook
-    {
-        "Test Case ID": "TC_Login_003",
-        "Scenario": "Sign in with Facebook",
-        "Steps": "Click 'Sign in with Facebook' button\nAuthenticate with Facebook\nRedirect to app",
-        "Expected Result": "User is successfully logged in and redirected to dashboard",
-        "Test Data": "Valid Facebook account",
-        "Priority": "High",
-        "Status": "Not Executed"
-    },
-    # Email Login: Valid credentials
-    {
-        "Test Case ID": "TC_Login_004",
-        "Scenario": "Login with valid email and password",
-        "Steps": "Enter email and password\nClick Login",
-        "Expected Result": "User is logged in and redirected to dashboard",
-        "Test Data": "Valid email and password",
-        "Priority": "High",
-        "Status": "Not Executed"
-    },
-    # Email Login: Invalid password
-    {
-        "Test Case ID": "TC_Login_005",
-        "Scenario": "Login with incorrect password",
-        "Steps": "Enter valid email and incorrect password\nClick Login",
-        "Expected Result": "Error message displayed: 'Incorrect password'",
-        "Test Data": "Valid email, wrong password",
-        "Priority": "Medium",
-        "Status": "Not Executed"
-    },
-    # Email Login: Invalid email
-    {
-        "Test Case ID": "TC_Login_006",
-        "Scenario": "Login with invalid email format",
-        "Steps": "Enter malformed email (e.g., 'user@')\nClick Login",
-        "Expected Result": "Validation error displayed",
-        "Test Data": "Invalid email",
+        "Test Case ID": "TC_Login_016",
+        "Scenario": "Fail to generate a new secret key",
+        "Steps": "Click 'Create a new key'\nSimulate backend failure",
+        "Expected Result": "Error message displayed: 'Failed to generate key, please try again'",
+        "Test Data": "N/A",
         "Priority": "Low",
         "Status": "Not Executed"
-    },
-    # Secret Key Login: Valid key
-    {
-        "Test Case ID": "TC_Login_007",
-        "Scenario": "Login using valid secret key",
-        "Steps": "Click 'Use Secret Key'\nPaste valid key\nClick Submit",
-        "Expected Result": "User is logged in and redirected to dashboard",
-        "Test Data": "Valid secret key",
-        "Priority": "High",
-        "Status": "Not Executed"
-    },
-    # Secret Key Login: Invalid key
-    {
-        "Test Case ID": "TC_Login_008",
-        "Scenario": "Login using invalid secret key",
-        "Steps": "Click 'Use Secret Key'\nPaste invalid/expired key\nClick Submit",
-        "Expected Result": "Error message: 'Invalid or expired key'",
-        "Test Data": "Invalid secret key",
-        "Priority": "Medium",
-        "Status": "Not Executed"
-    },
-    # Secret Key Generation
-    {
-        "Test Case ID": "TC_Login_009",
-        "Scenario": "Generate a new secret key",
-        "Steps": "Click 'Create a new key'\nCopy generated key",
-        "Expected Result": "Key is successfully generated and copied",
-        "Test Data": "N/A",
-        "Priority": "Medium",
-        "Status": "Not Executed"
     }
 ]
 
 # Convert to DataFrame and export to Excel
 df = pd.DataFrame(test_cases)
-file_path = "/mnt/data/CovertlyAI_Login_Test_Cases.xlsx"
+file_path = "CovertlyAI_Login_Test_Cases_Extended.xlsx"
 df.to_excel(file_path, index=False)
 
-file_path
+print(f"Test cases exported successfully to {file_path}")
