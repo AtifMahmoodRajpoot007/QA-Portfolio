@@ -5,6 +5,7 @@
   <a href="mailto:atifmahmoodrajpoot@gmail.com">📧 Email</a> • 
   <a href="https://www.linkedin.com/in/atif-mahmood-862929246">🔗 LinkedIn</a> • 
   📍 Lahore, Pakistan
+📄 <a href="./Resume.md">View Resume </a>
 </p>
 
 ---
