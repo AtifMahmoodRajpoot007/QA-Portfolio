@@ -1,47 +1,87 @@
 {
   "info": {
-    "_postman_id": "12345678-abcd-efgh-ijkl-1234567890ab",
-    "name": "GitHub Profile API Testing",
+    "name": "AI Image Detection & Difference API",
+    "_postman_id": "combined-collection-id-0000-0000-0000-000000000000",
+    "description": "Postman collection for testing both AI image detection and image difference APIs",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Get GitHub User",
+      "name": "Detect AI Generated Image",
       "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "https://api.github.com/users/octocat",
-          "protocol": "https",
-          "host": [
-            "api",
-            "github",
-            "com"
-          ],
-          "path": [
-            "users",
-            "octocat"
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "multipart/form-data"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image",
+              "type": "file",
+              "src": "/path/to/your/image.jpg"
+            }
           ]
+        },
+        "url": {
+          "raw": "https://your-api-endpoint.com/detect",
+          "protocol": "https",
+          "host": ["your-api-endpoint", "com"],
+          "path": ["detect"]
         }
       },
-      "response": [],
-      "event": [
+      "response": [
         {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test(\"Status code is 200\", function () {",
-              "    pm.response.to.have.status(200);",
-              "});",
-              "",
-              "pm.test(\"Response has login and id\", function () {",
-              "    const jsonData = pm.response.json();",
-              "    pm.expect(jsonData).to.have.property(\"login\");",
-              "    pm.expect(jsonData).to.have.property(\"id\");",
-              "});"
-            ],
-            "type": "text/javascript"
+          "name": "Sample Response - Not AI Generated",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"data\": {\n    \"is_ai_generated\": false,\n    \"confidence\": 0.018074408173561096,\n    \"sources\": {\n      \"sora\": 4.226737004842107e-08,\n      \"pika\": 3.1260140076483367e-07,\n      \"haiper\": 1.4588716276133523e-20,\n      \"kling\": 1.6727864649013213e-09,\n      \"luma\": 1.6737392627419467e-07,\n      \"hedra\": 3.4939351412077713e-09,\n      \"runway\": 5.313944839713258e-09,\n      \"flux\": 3.7909333059360506e-06,\n      \"sdxlinpaint\": 1.297010385314934e-05,\n      \"stablediffusioninpaint\": 1.1511847031187017e-09,\n      \"otherimagegenerators\": 1.3518291552827577e-06,\n      \"bingimagecreator\": 1.4729495489973488e-07,\n      \"adobefirefly\": 0.0019709463231265545,\n      \"lcm\": 2.31497860880836e-08,\n      \"dalle\": 9.545601642457768e-05,\n      \"pixart\": 7.891550524163904e-09,\n      \"glide\": 7.287374037545646e-10,\n      \"stablediffusion\": 0.013142712414264679,\n      \"imagen\": 2.0110371679038508e-06,\n      \"amused\": 9.541398782175747e-10,\n      \"stablecascade\": 3.1833476299425456e-08,\n      \"midjourney\": 0.00015842179709579796,\n      \"deepfloyd\": 1.0953966622651023e-09,\n      \"gan\": 4.1923003664123826e-06,\n      \"stablediffusionxl\": 8.150707799359225e-06,\n      \"vqdiffusion\": 9.352515428773245e-10,\n      \"kandinsky\": 1.0183289305132348e-06,\n      \"wuerstchen\": 8.722602018451653e-08,\n      \"titan\": 9.55655732326477e-09,\n      \"ideogram\": 5.722760397475213e-05,\n      \"none\": 0.9845409393310547\n    },\n    \"status\": \"SUCCESS\"\n  },\n  \"message\": \"AI model detection completed\",\n  \"success\": true\n}"
+        }
+      ]
+    },
+    {
+      "name": "Compare Two Images",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "multipart/form-data"
           }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image1",
+              "type": "file",
+              "src": "/path/to/your/image1.jpg"
+            },
+            {
+              "key": "image2",
+              "type": "file",
+              "src": "/path/to/your/image2.jpg"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://your-api-endpoint.com/compare",
+          "protocol": "https",
+          "host": ["your-api-endpoint", "com"],
+          "path": ["compare"]
+        }
+      },
+      "response": [
+        {
+          "name": "Sample Response - Image Differences",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"data\": {\n    \"diff_count\": 873142,\n    \"annotated_image\": \"https://centurion-dev.sfo3.digitaloceanspaces.com/94cac53c-402f-4689-bb50-d58f0ea19a55.png\"\n  },\n  \"message\": \"Images compared successfully\",\n  \"success\": true\n}"
         }
       ]
     }
