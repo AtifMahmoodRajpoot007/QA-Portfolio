@@ -36,7 +36,7 @@ This repository showcases my QA skills through **practical, real-world testing d
 
 - 🧪 **Testing Types**: Functional, Regression, Smoke, UAT, Black Box  
 - 📱 **Platforms**: Web, Android, iOS  
-- ⚙️ **Tools**: Postman, JMeter, Metamask, Swagger, Monday.com  
+- ⚙️ **Tools**: Postman, JMeter, Metamask, Swagger, Monday.com ,Testim
 - 📋 **Processes**: Agile/Scrum, SDLC, Defect Lifecycle
 
 ---
