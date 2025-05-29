@@ -10,10 +10,12 @@
 
 ## 🧑‍💼 Professional Summary
 
-Detail-oriented QA Engineer with proven expertise in manual testing for web and mobile applications.  
-Skilled in designing detailed test cases and executing regression, smoke, and UAT testing in Agile/Scrum environments.  
-Played a key role in delivering high-quality AI, blockchain, and e-commerce products by identifying critical bugs and improving release stability.  
-Strong collaborator with cross-functional teams, focused on driving product quality across the SDLC.
+Detail-oriented QA Engineer with proven expertise in manual testing of web and mobile applications across diverse
+domains.Skilled in designing high-coverage test cases and executing regression, smoke, and UAT testing within Agile/Scrum
+frameworks.Experienced with modern QA tools, including Testim for UI automation, enabling broader test coverage and
+minimizing manual regression effort.Contributed to the successful delivery of AI, blockchain, and e-commerce products by
+identifying critical defects and supporting stable releases.Highly collaborative, with a strong focus on quality at every stage of
+the SDLC through clear documentation and cross-functional coordination.
 
 ---
 
@@ -30,6 +32,7 @@ Strong collaborator with cross-functional teams, focused on driving product qual
 - Logged and tracked **250+ bugs**, boosting overall product quality and team velocity.
 - Maintained **clear test plans, bug reports, and UAT criteria**, improving traceability.
 - Used **Monday.com** to manage sprints, priorities, and timelines.
+- Used Testim to automate UI test flows for web applications, reducing manual regression efforts in later sprints.
 - Delivered timely QA results under tight deadlines while maintaining high standards.
 
 ---
@@ -41,6 +44,7 @@ Strong collaborator with cross-functional teams, focused on driving product qual
 - **API Testing:** Postman, Swagger
 - **Performance:** JMeter
 - **Blockchain Testing:** Metamask
+-  **Automation Tool:** Testim
 - **Test Management:** Monday.com
 - **Databases:** SQL, MongoDB
 
